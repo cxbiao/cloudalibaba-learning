@@ -1,0 +1,36 @@
+server:
+  port: 8901
+
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        metadata:
+          # 自己这个实例的版本
+          version: v1
+          # 允许调用的提供者版本
+          target-version: v1
+        #要在控制台创建namespace ,填写相应id
+#        namespace: 3237a1b5-ae16-4367-8cec-da39796b54c0
+#        group: xx
+#        cluster-name: bb
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
+

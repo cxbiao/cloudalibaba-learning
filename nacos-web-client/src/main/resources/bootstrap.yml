@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: web-client
+  cloud:
+    nacos:
+# default rule :DataId of ${spring.application.name}-${profile}.${file-extension:properties}
+      config:
+        file-extension: yml
+        # First take the prefix, then go to the name, and finally take spring.application.name
+        #prefix: bryan
+        server-addr: 127.0.0.1:8848
+

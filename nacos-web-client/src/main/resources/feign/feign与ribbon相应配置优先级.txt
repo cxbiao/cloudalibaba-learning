@@ -1,0 +1,12 @@
+feign配置优先级
+
+默认值  properties.isDefaultToProperties() =true
+细粒度属性>全局属性>细粒度java代码>全局java代码
+
+默认值  properties.isDefaultToProperties() =false
+细粒度java代码>全局java代码>细粒度属性>全局属性
+
+
+ribbon配置优先级
+细粒度属性>全局属性>细粒度java代码>全局java代码
+有一些是例外，比如负载均衡规则，ping规则，这些都是以java代码为准

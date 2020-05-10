@@ -1,0 +1,77 @@
+server:
+  port: 8000
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+spring:
+  application:
+    name: gateway
+  redis:
+    host: localhost
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 15
+        min-idle: 0
+        max-idle: 8
+        max-wait: 3000
+    # 链接超时时间 单位 ms（毫秒）
+    timeout: 3000
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        #要在控制台创建namespace ,填写相应id
+    #        namespace: 3237a1b5-ae16-4367-8cec-da39796b54c0
+    #        group: xx
+    #        cluster-name: bb
+    gateway:
+#      discovery:
+#        locator:
+#          # 让gateway通过服务发现组件找到其他的微服务
+#          enabled: true
+      #匹配到了一个就不会往下走了
+      routes:
+        - id: after_route
+          uri: lb://web-client
+          predicates:
+            #TimeBetweenRoutePredicateFactory 必须TimeBetween为前缀
+            - TimeBetween=09:00:00,22:00:00
+          filters:
+            - AddRequestHeader=X-Request-red, blue
+            - PreLog=today,mon
+            - name: RequestRateLimiter
+              args:
+                # 令牌桶每秒填充平均速率
+                redis-rate-limiter.replenishRate: 1
+                # 令牌桶的上限  一开始可以容纳2req/s，下一秒开始只能1req/s
+                redis-rate-limiter.burstCapacity: 2
+                # 默认是1，每个请求消耗的token数量
+                redis-rate-limiter.requestedTokens: 1
+                # 使用SpEL表达式从Spring容器中获取Bean对象
+                key-resolver: "#{@pathKeyResolver}"
+
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/order/**
+          filters:
+            #去掉Path前缀 1代表去除/web
+            - StripPrefix=1
+#        - id: web
+#          uri: lb://web-client
+#          predicates:
+#            - Path=/web/**
+#          filters:
+#            #去掉Path前缀 1代表去除/web
+#            - StripPrefix=1
