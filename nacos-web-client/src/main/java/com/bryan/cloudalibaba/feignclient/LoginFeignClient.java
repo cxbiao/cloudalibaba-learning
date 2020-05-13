@@ -9,7 +9,7 @@ import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.web.bind.annotation.*;
 
 //细粒度配置java代码
-@FeignClient(name = "order-service",configuration = LoginFeignConfig.class,
+@FeignClient(name = "order-service",contextId = "x1",configuration = LoginFeignConfig.class,
      //fallback =LoginFeignFallback.class
       fallbackFactory = LoginFeignFallbackFactory.class
 )

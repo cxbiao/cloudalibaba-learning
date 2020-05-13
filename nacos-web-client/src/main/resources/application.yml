@@ -19,6 +19,35 @@ spring:
     active: dev
   application:
     name: web-client
+    # 配置数据源
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://120.78.160.26:3306/seata_account?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+      username: root
+      password: 123456
+      # 初始化连接池大小
+      initial-size: 5
+      # 连接池最小值
+      min-idle: 2
+      # 连接池最大值
+      max-active: 10
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
   cloud:
     nacos:
       discovery:
@@ -63,6 +92,10 @@ feign:
 logging:
   level:
     com.bryan.cloudalibaba.feignclient: debug
+    com.bryan.cloudalibaba.mapper: debug
+    com.alibaba.nacos.client.config.impl: warn
+    org.springframework.jdbc.datasource.DataSourceTransactionManager: debug
+
 
 # 全局生效
 #ribbon:
@@ -85,4 +118,16 @@ logging:
 #resttemplate:
 #  sentinel:
 #    enabled: false
-
+seata:
+  # 这条与service.vgroupMapping.my_test_tx_group这条对应，它的值就是集群seata的集群名称,通过这个集群找seata,注册中心配置的cluster无效
+  tx-service-group: my_test_tx_group
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848

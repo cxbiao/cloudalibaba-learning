@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 只能处理BlockException
  * 只能处理RequestMapping这种资源
+ *
+ * 默认异常Blocked by Sentinel (flow limiting)  429Too Many Requests
  */
 @Component
 public class MyUrlBlockHandler implements BlockExceptionHandler {
@@ -36,7 +38,7 @@ public class MyUrlBlockHandler implements BlockExceptionHandler {
         } else if (e instanceof AuthorityException) {
             msg= JSON.toJSONString(ApiResponse.failure(104,"授权规则不通过"));
         }
-        // http状态码
+        // http状态码 不加就是200返回
         response.setStatus(500);
         response.setCharacterEncoding("utf-8");
         response.setHeader("Content-Type", "application/json;charset=utf-8");

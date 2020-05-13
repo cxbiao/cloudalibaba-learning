@@ -5,6 +5,7 @@ import com.bryan.cloudalibaba.pojo.User;
 import org.springframework.stereotype.Component;
 
 @Component
+//http status 都是200
 public class LoginFeignFallback implements LoginFeignClient{
     @Override
     public ApiResponse loginByUsername(String username, String password) {

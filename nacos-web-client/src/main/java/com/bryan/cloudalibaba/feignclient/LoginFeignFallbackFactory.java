@@ -15,6 +15,7 @@ public class LoginFeignFallbackFactory implements FallbackFactory<LoginFeignClie
             return null;
         }
         log.error("出错了:"+throwable.getMessage(),throwable);
+        //http status 都是200
         return new LoginFeignClient() {
             @Override
             public ApiResponse loginByUsername(String username, String password) {

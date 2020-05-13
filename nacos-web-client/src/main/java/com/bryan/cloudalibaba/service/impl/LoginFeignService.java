@@ -4,15 +4,16 @@ import com.bryan.cloudalibaba.feignclient.LoginFeignClient;
 import com.bryan.cloudalibaba.pojo.ApiResponse;
 import com.bryan.cloudalibaba.pojo.User;
 import com.bryan.cloudalibaba.service.LoginService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class LoginFeignService implements LoginService {
 
 
-    @Autowired
-    private LoginFeignClient loginFeignClient;
+    private final LoginFeignClient loginFeignClient;
 
     @Override
     public ApiResponse loginByUsername(String username, String password) {
