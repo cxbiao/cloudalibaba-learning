@@ -17,7 +17,7 @@ spring:
   application:
     name: gateway
   redis:
-    host: localhost
+    host: 120.78.160.86
     port: 6379
     lettuce:
       pool:
