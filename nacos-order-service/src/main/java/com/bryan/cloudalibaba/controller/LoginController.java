@@ -3,10 +3,11 @@ package com.bryan.cloudalibaba.controller;
 import com.bryan.cloudalibaba.pojo.ApiResponse;
 import com.bryan.cloudalibaba.pojo.User;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping(value = "/login",produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 public class LoginController {
 
