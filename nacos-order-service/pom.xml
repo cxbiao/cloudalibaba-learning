@@ -13,10 +13,6 @@
     <name>nacos-order-service</name>
     <description>Demo project for Spring Boot</description>
 
-    <properties>
-        <mysql-connector.version>8.0.20</mysql-connector.version>
-        <druid>1.1.21</druid>
-    </properties>
     <dependencies>
 
         <dependency>
@@ -80,13 +76,11 @@
         <dependency>
             <groupId>io.seata</groupId>
             <artifactId>seata-spring-boot-starter</artifactId>
-            <version>1.2.0</version>
         </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql-connector.version}</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -94,7 +88,6 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.3.1</version>
         </dependency>
 
 

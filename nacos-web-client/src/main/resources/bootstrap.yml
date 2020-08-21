@@ -7,6 +7,7 @@ spring:
     nacos:
 # default rule :DataId of ${spring.application.name}-${profile}.${file-extension:properties}
       config:
+        # 加了profile dataId一定要带上file-extension扩展名，没加的话可带可不带
         file-extension: yml
         # First take the prefix, then go to the name, and finally take spring.application.name
         #prefix: bryan

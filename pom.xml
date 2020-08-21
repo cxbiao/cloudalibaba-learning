@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.6.RELEASE</version>
+        <version>2.2.9.RELEASE</version>
 <!--         默认从父目录找-->
 <!--        <relativePath>../pom.xml</relativePath>-->
         <relativePath/> <!-- lookup parent from repository 从仓库中找，不从项目文件中找-->
@@ -20,8 +20,13 @@
         <java.version>1.8</java.version>
         <maven.test.failure.ignore>true</maven.test.failure.ignore>
         <maven.test.skip>true</maven.test.skip>
-        <spring-cloud.version>Hoxton.SR4</spring-cloud.version>
+        <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
+        <mysql-connector.version>8.0.20</mysql-connector.version>
+        <druid>1.1.21</druid>
+        <seata-version>1.2.0</seata-version>
+        <mybatis-plus>3.3.2</mybatis-plus>
+        <fastjson>1.2.68</fastjson>
     </properties>
 
     <dependencyManagement>
@@ -41,7 +46,38 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-spring-boot-starter</artifactId>
+                <version>${seata-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson}</version>
+            </dependency>
+
         </dependencies>
+
+
     </dependencyManagement>
 
     <modules>
