@@ -26,7 +26,7 @@
         <druid>1.1.21</druid>
         <seata-version>1.2.0</seata-version>
         <mybatis-plus>3.4.0</mybatis-plus>
-        <fastjson>1.2.68</fastjson>
+        <fastjson>1.2.83</fastjson>
     </properties>
 
     <dependencyManagement>
