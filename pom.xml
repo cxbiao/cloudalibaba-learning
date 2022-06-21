@@ -22,7 +22,7 @@
         <maven.test.skip>true</maven.test.skip>
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
-        <mysql-connector.version>8.0.21</mysql-connector.version>
+        <mysql-connector.version>8.0.28</mysql-connector.version>
         <druid>1.1.21</druid>
         <seata-version>1.2.0</seata-version>
         <mybatis-plus>3.4.0</mybatis-plus>
